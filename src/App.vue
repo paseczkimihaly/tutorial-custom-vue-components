@@ -1,16 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <button @click="addSnackbar()">Add</button>
+    <Snackbars />
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Snackbars from "@/components/Snackbars";
 export default {
   name: "App",
   components: {
-    HelloWorld
-  }
+    Snackbars,
+  },
+  methods: {
+    addSnackbar() {
+      this.$store.dispatch("addSnackbar", {
+        title: "New snackbar",
+        message: "Hello world",
+      });
+    },
+  },
 };
 </script>
 
