@@ -54,6 +54,6 @@ body {
     padding: 50px;
 	width:100vw;
 	height: 100vh;
-	background:$background;
+	background:$secondary;
 }
 </style>

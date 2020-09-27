@@ -1,7 +1,7 @@
 <template>
     <div class="snackbars">
         <transition-group name="list">
-            <Snackbar v-for="snackbar in getSnackbars" :key="snackbar.id" :snackbar="snackbar"/>
+            <Snackbar class="snack" v-for="snackbar in getSnackbars" :key="snackbar.id" :snackbar="snackbar"/>
         </transition-group>
     </div>
 </template>
@@ -48,6 +48,11 @@ export default {
     pointer-events: none;
 
     padding: 50px;
-    z-index: 99;
+	z-index: 99;
+	
+	.snack{
+	    filter: drop-shadow(0px 0px 3px rgba($background,0.1));
+
+	}
 }
 </style>

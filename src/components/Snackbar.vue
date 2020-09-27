@@ -93,7 +93,7 @@ export default {
 
         .buttons {
             .button {
-                background: $secondary;
+                background: white;
             }
         }
     }
@@ -111,7 +111,7 @@ export default {
 
         .buttons {
             .button {
-                background: $secondary;
+                background: white;
             }
         }
     }
@@ -146,8 +146,8 @@ export default {
         user-select: none;
         clip-path: polygon(0 0, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 10px 100%, 0% calc(100% - 10px));
         
-        transform: translateX(-12px) translateY(-2px);
         transition: all 0.2s;
+        transform: translateX(-12px) scale(0.9);
 
         .button {
             height: 100%;
@@ -168,7 +168,6 @@ export default {
             }
 
             &.load {
-                color: blue;
                 animation: spinner 5s linear 2s infinite alternate;
             }
 
