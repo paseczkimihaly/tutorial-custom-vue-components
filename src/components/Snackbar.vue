@@ -119,7 +119,8 @@ export default {
     .content {
         min-width: 300px;
         padding: 10px 20px;
-        clip-path: polygon(0 0, 98% 0, 100% 100%, 2% 100%);
+        clip-path: polygon(0 0, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 10px 100%, 0% calc(100% - 10px));
+
         background: $secondary;
         padding-right: 40px;
         transition: all 0.2s;
@@ -143,8 +144,9 @@ export default {
         justify-content: center;
         height: 100%;
         user-select: none;
-        clip-path: polygon(0 0, 98% 0, 100% 100%, 2% 100%);
-        transform: translateX(-12px);
+        clip-path: polygon(0 0, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 10px 100%, 0% calc(100% - 10px));
+        
+        transform: translateX(-12px) translateY(-2px);
         transition: all 0.2s;
 
         .button {
