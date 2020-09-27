@@ -13,11 +13,21 @@ export default {
         Snackbars,
     },
     methods: {
-        addSnackbar() {
-            this.$store.dispatch("addSnackbar", {
-                title: "New snackbar",
-                message: "Hello world",
-            });
+        async addSnackbar() {
+            let id = await this.$store.dispatch("addSnackbar", {
+                title: "New snackbar...",
+                message: "Hello world, and hello moon",
+			});
+			let success = Math.random() > 0.5 ? true : false;
+			setTimeout(() => {
+				console.log('update');
+				this.$store.commit('updateSnackbar',{
+					id,
+					title:success ? 'Success!': 'Error',
+					type:success ? 'success' : 'fail',
+					loading:false
+				})
+			}, 2000);
         },
     },
 };
@@ -35,7 +45,7 @@ body {
 }
 
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
