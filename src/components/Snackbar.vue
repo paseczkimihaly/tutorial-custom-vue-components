@@ -1,6 +1,7 @@
 <template>
     <div class="snackbar" :class="snackbar.type">
         <div class="content">
+            <div class="timer" v-if="timer"></div>
             <div class="title">
                 {{ snackbar.title }}
             </div>
@@ -14,10 +15,10 @@
                     clear
                 </span>
             </div>
-            <div class="button load" v-if="snackbar.loading">
+            <div class="button" v-if="snackbar.loading">
                 <div class="load">
                     <span class="material-icons">
-                        bubble_chart
+                        hourglass_bottom
                     </span>
                 </div>
             </div>
@@ -31,10 +32,38 @@ export default {
     props: {
         snackbar: Object
     },
+    data(){
+        return {
+            timer:null
+        }
+    },
+    created(){
+        if(!this.snackbar.loading){
+            this.attachTimer()
+        }
+    },
+    
+    watch:{
+        isLoading(value){
+            if(!value){
+                this.attachTimer();
+            }
+        }
+    },
+    computed:{
+        isLoading(){
+            return this.snackbar.loading
+        }
+    },
     methods: {
         removeSnack(id) {
             console.log(id);
             this.$store.commit('removeSnackbar', id)
+        },
+        attachTimer(){
+            this.timer = setTimeout(() => {
+                this.removeSnack(this.snackbar.id)
+            }, 5000);
         }
     }
 };
@@ -66,6 +95,28 @@ export default {
     margin-top: 20px;
     position: relative;
     transition: all 0.2s;
+    position:relative;
+
+    .timer{
+        width:100%;
+        height: 100%;
+        background:rgba(black,0.05);
+        mix-blend-mode: multiply;
+        position:absolute;
+        bottom:0px;
+        left:0px;
+        z-index: 2;
+        animation:load 9.2s both;
+
+        @keyframes load{
+            from{
+                width:0%;
+            }
+            to{
+                width:100%;
+            }
+        }
+    }
 
     &:after {
         transition: all 0.2s;
@@ -159,7 +210,7 @@ export default {
             transition: all 0.2s;
 
             &.clear {
-
+                
                 &:hover {
                     background: $secondary;
                     cursor: pointer;
@@ -167,8 +218,11 @@ export default {
                 }
             }
 
-            &.load {
-                animation: spinner 5s linear 2s infinite alternate;
+            .load {
+                animation: shake-bottom 2s linear infinite alternate ;
+                display:flex;
+                justify-content: center;
+                align-items: center;
             }
 
         }

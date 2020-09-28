@@ -17,6 +17,7 @@ export default {
             let id = await this.$store.dispatch("addSnackbar", {
                 title: "New snackbar...",
                 message: "Hello world, and hello moon, and hi",
+                loading:true,
 			});
 			let success = Math.random() > 0.5 ? true : false;
 			setTimeout(() => {

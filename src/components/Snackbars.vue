@@ -51,7 +51,7 @@ export default {
 	z-index: 99;
 	
 	.snack{
-	    filter: drop-shadow(0px 0px 3px rgba($background,0.1));
+	    filter: drop-shadow(-5px 5px 0px rgba($background,0.1));
 
 	}
 }
