@@ -10,18 +10,22 @@
             </div>
         </div>
         <div class="buttons">
-            <div class="button clear" v-if="!snackbar.loading" @click="removeSnack(snackbar.id)">
-                <span class="material-icons">
-                    clear
-                </span>
-            </div>
-            <div class="button" v-if="snackbar.loading">
-                <div class="load">
+            <transition name="button">
+                <div class="button clear" v-if="!snackbar.loading" key="delete" @click="removeSnack(snackbar.id)">
                     <span class="material-icons">
-                        hourglass_bottom
+                        clear
                     </span>
                 </div>
-            </div>
+            </transition>
+            <transition name="button">
+                <div class="button" v-if="snackbar.loading" key="loading">
+                    <div class="load">
+                        <span class="material-icons">
+                            hourglass_bottom
+                        </span>
+                    </div>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -45,7 +49,7 @@ export default {
     
     watch:{
         isLoading(value){
-            if(!value){
+            if(!value && !this.timer){
                 this.attachTimer();
             }
         }
@@ -65,6 +69,9 @@ export default {
                 this.removeSnack(this.snackbar.id)
             }, 5000);
         }
+    },
+    beforeUnmount(){
+        clearTimeout(this.timer);
     }
 };
 </script>
@@ -88,6 +95,7 @@ export default {
 }
 
 .snackbar {
+    margin-right: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -199,6 +207,21 @@ export default {
         
         transition: all 0.2s;
         transform: translateX(-12px) scale(0.9);
+        // position:relative;
+        // left:100%;
+        animation: buttonIn 0.2s 0.1s both;
+
+        @keyframes buttonIn {
+            from{
+                transform: translateX(-12px) scale(1.2);
+                opacity:0;
+            }
+            to{
+                transform: translateX(-12px) scale(0.9);
+                opacity:1;
+
+            }
+        }
 
         .button {
             height: 100%;
@@ -227,5 +250,16 @@ export default {
 
         }
     }
+}
+.button-enter-active,
+.button-leave-active {
+    transition: all 0.3s;
+}
+
+.button-enter-from,
+.button-leave-to {
+    position:absolute;
+    opacity: 0;
+    transform: scale(0.8);
 }
 </style>

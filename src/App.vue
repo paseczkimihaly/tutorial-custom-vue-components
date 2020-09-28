@@ -13,9 +13,9 @@
                 <p class="linetext">BUTTONS</p>
             </div>
             <div class="buttons">
-                <custom-button class="bright" @click="addSnackbar()">Bright</custom-button>
-                <custom-button @click="addSnackbar()">Red</custom-button>
-                <custom-button class="green" @click="addSnackbar()">Green</custom-button>
+                <custom-button class="bright" @click="addSnackbar(null)">Bright</custom-button>
+                <custom-button @click="addSnackbar(false)">Red</custom-button>
+                <custom-button class="green" @click="addSnackbar(true)">Green</custom-button>
                 <custom-button disabled @click="addSnackbar()">Disabled</custom-button>
                 <custom-button loading @click="addSnackbar()">Loading</custom-button>
             </div>
@@ -31,22 +31,27 @@ export default {
         Snackbars,
     },
     methods: {
-        async addSnackbar() {
+        async addSnackbar(type) {
+            let isAsync = type != null;
             let id = await this.$store.dispatch("addSnackbar", {
                 title: "New snackbar...",
                 message: "Hello world, and hello moon, and hi",
-                loading: true,
+                loading: isAsync,
             });
-            let success = Math.random() > 0.5 ? true : false;
-            setTimeout(() => {
-                console.log('update');
-                this.$store.commit('updateSnackbar', {
-                    id,
-                    title: success ? 'Success!' : 'Error',
-                    type: success ? 'success' : 'fail',
-                    loading: false
-                })
-            }, 2000);
+
+            if(isAsync){
+
+                let success = type;
+                setTimeout(() => {
+                    console.log('update');
+                    this.$store.commit('updateSnackbar', {
+                        id,
+                        title: success ? 'Success!' : 'Error',
+                        type: success ? 'success' : 'fail',
+                        loading: false
+                    })
+                }, 2000);
+            }
         },
     },
 };
