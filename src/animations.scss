@@ -2,11 +2,11 @@
 @keyframes spinner{
 		from{
 			transform: rotate(0deg);
-			transform: scale(0.8);
+			// transform: scale(0.8);
 		}
 		to{
 			transform: rotate(360deg);
-			transform: scale(1.1);
+			// transform: scale(1.1);
 
 		}
 	}

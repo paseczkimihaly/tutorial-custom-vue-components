@@ -7,9 +7,18 @@
                 <p class="subtitle">Create your own Vue components with VueX and CSS Sass</p>
             </div>
         </div>
-        <div class="buttons buttonsBg">
-
-            <custom-button @click="addSnackbar()">Add</custom-button>
+        <div class="mainButtons buttonsBg">
+            <div class="title">
+                <p class="">BUTTONS</p>
+                <p class="linetext">BUTTONS</p>
+            </div>
+            <div class="buttons">
+                <custom-button class="bright" @click="addSnackbar()">Bright</custom-button>
+                <custom-button @click="addSnackbar()">Red</custom-button>
+                <custom-button class="green" @click="addSnackbar()">Green</custom-button>
+                <custom-button disabled @click="addSnackbar()">Disabled</custom-button>
+                <custom-button loading @click="addSnackbar()">Loading</custom-button>
+            </div>
         </div>
     </div>
 </template>
@@ -26,18 +35,18 @@ export default {
             let id = await this.$store.dispatch("addSnackbar", {
                 title: "New snackbar...",
                 message: "Hello world, and hello moon, and hi",
-                loading:true,
-			});
-			let success = Math.random() > 0.5 ? true : false;
-			setTimeout(() => {
-				console.log('update');
-				this.$store.commit('updateSnackbar',{
-					id,
-					title:success ? 'Success!': 'Error',
-					type:success ? 'success' : 'fail',
-					loading:false
-				})
-			}, 2000);
+                loading: true,
+            });
+            let success = Math.random() > 0.5 ? true : false;
+            setTimeout(() => {
+                console.log('update');
+                this.$store.commit('updateSnackbar', {
+                    id,
+                    title: success ? 'Success!' : 'Error',
+                    type: success ? 'success' : 'fail',
+                    loading: false
+                })
+            }, 2000);
         },
     },
 };
@@ -50,7 +59,7 @@ body {
     margin: 0;
 }
 
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -62,44 +71,72 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
 }
-.site{
+
+.site {
     max-width: 100vw;
-    
-    .main{
-    padding:150px 200px;
+
+    .main {
+        padding: 150px 200px;
         // height: 500px;
-        display:flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
 
-        .texts{
+        .texts {
             // margin-bottom:150px;
 
-            .title{
+            .title {
+
                 font-size: 72px;
                 text-transform: uppercase;
                 font-weight: 950;
-    	        filter: drop-shadow(-5px 5px 0px rgba($error,1));
+                filter: drop-shadow(-5px 5px 0px rgba($error, 1));
             }
-            .subtitle{
+
+            .subtitle {
                 font-size: 24px;
                 text-transform: uppercase;
-    
+
             }
         }
 
-
     }
 
-    .buttons{
-        padding:50px;
-        height: 500px;
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-		background-color: $background;
+    .mainButtons {
+        background-color: $background;
+        border-top: 5px solid $error;
+        padding: 100px 200px;
+
+        .title {
+            position: relative;
+            height: 150px;
+            p {
+                position: absolute;
+                top: 5px;
+                    left: -5px;
+
+                &.linetext {
+                    top: 0px;
+                    left:0px;
+                }
+            }
+
+            font-size: 96px;
+            font-weight: 900;
+            margin-bottom: 50px;
+        }
+
+        .buttons {
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .wrapper {
+                margin-right: 40px;
+            }
+        }
 
         // clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
     }
