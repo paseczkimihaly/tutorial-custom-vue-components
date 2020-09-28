@@ -1,7 +1,16 @@
 <template>
     <Snackbars />
-    <div class="site">
-        <button @click="addSnackbar()">Add</button>
+    <div class="site mainBg">
+        <div class="main ">
+            <div class="texts">
+                <p class="title">Custom Vue Components</p>
+                <p class="subtitle">Create your own Vue components with VueX and CSS Sass</p>
+            </div>
+        </div>
+        <div class="buttons buttonsBg">
+
+            <custom-button @click="addSnackbar()">Add</custom-button>
+        </div>
     </div>
 </template>
 
@@ -43,6 +52,8 @@ body {
 
 *{
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 #app {
@@ -52,9 +63,45 @@ body {
     color: #2c3e50;
 }
 .site{
-    padding: 50px;
-	width:100vw;
-	height: 100vh;
-	background:$secondary;
+    max-width: 100vw;
+    
+    .main{
+    padding:150px 200px;
+        // height: 500px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        .texts{
+            // margin-bottom:150px;
+
+            .title{
+                font-size: 72px;
+                text-transform: uppercase;
+                font-weight: 950;
+    	        filter: drop-shadow(-5px 5px 0px rgba($error,1));
+            }
+            .subtitle{
+                font-size: 24px;
+                text-transform: uppercase;
+    
+            }
+        }
+
+
+    }
+
+    .buttons{
+        padding:50px;
+        height: 500px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+		background-color: $background;
+
+        // clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+    }
 }
 </style>

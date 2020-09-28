@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+Animations
+https://animista.net/
+
+Clipping masks
+https://bennettfeely.com/clippy/
