@@ -47,7 +47,7 @@ export default {
     align-items: flex-end;
     pointer-events: none;
 
-    padding: 50px;
+    padding: 2vw;
 	z-index: 99;
 	
 	.snack{

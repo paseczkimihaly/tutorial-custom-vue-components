@@ -1,8 +1,11 @@
 @import "animations.scss";
 $primrary:#f9f9f9;
 $secondary:#ece8e1;
-$background:#0f1923;
+$background:hsl(210, 40%, 10%);
 $black:#111111;
+
+$text:hsl(210, 29%, 24%);
+$textSeconday:hsl(210, 20%, 30%);
 
 $error:#ff4655;
 $success:#2fffcf;
@@ -13,11 +16,6 @@ $success:#2fffcf;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-.linetext{
-background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(255,255,255,.5) 4px, rgba(255,255,255,.5) 8px);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-}
 
 .mainBg{
 	background-color: $secondary;

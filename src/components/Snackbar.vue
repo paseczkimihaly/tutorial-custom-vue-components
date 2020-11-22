@@ -81,25 +81,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.snackbars {
-    width: 100%;
-    height: 100%;
-
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    pointer-events: none;
-
-    padding: 50px;
-    z-index: 99;
-}
 
 .snackbar {
-    margin-right: 50px;
+    // margin-right: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;

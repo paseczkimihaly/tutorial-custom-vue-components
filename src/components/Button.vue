@@ -91,7 +91,7 @@ export default {
 
     &:hover {
         filter: drop-shadow(-5px 5px 0px rgba($black, 1));
-        transform: translate(2px, -2px);
+        // transform: translate(2px, -2px);
         transition: all 0.1s;
 
         &:after {
@@ -122,7 +122,7 @@ export default {
     }
 
     &:active {
-        transform: translate(1px, -1px);
+        transform: translate(1px, 1px);
 
         .button {
             opacity: 0.5
@@ -134,7 +134,7 @@ export default {
         height: 100%;
         user-select: none;
         background: $error;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 800;
         letter-spacing: 0.3px;
         text-transform: uppercase;
