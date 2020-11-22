@@ -22,15 +22,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list{
+    transition: all 0.2s;
+}
 .list-enter-active,
 .list-leave-active {
     transition: all 0.3s;
-    height: unset;
+    // height: unset;
+    max-height:100px;
 }
 
 .list-enter-from,
 .list-leave-to {
     opacity: 0;
+    max-height:0px;
+    // overflow: hidden;
+    // height: 0px;
     transform: translateX(30px);
 }
 
@@ -51,7 +58,8 @@ export default {
 	z-index: 99;
 	
 	.snack{
-	    filter: drop-shadow(-5px 5px 0px rgba($background,0.1));
+        filter: drop-shadow(-5px 5px 0px rgba($background,0.1));
+        transition: all 0.2s;
 
 	}
 }

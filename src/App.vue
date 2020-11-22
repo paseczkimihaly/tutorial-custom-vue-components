@@ -1,6 +1,15 @@
 <template>
     <Snackbars />
     <div class="site mainBg">
+        <div class="navigation">
+            <img class="logo" src="@/assets/logo.png" alt="">
+            <div class="links">
+                <router-link class="link active">Home</router-link>
+                <router-link class="link">About</router-link>
+                <router-link class="link">Modals</router-link>
+                <router-link class="link">Forms</router-link>
+            </div>
+        </div>
         <div class="main ">
             <div class="texts">
                 <p class="title">Custom Vue Components</p>
@@ -84,16 +93,59 @@ body {
 .site {
     max-width: 100vw;
 
+    .navigation {
+        background: $primary;
+        height: 70px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        user-select: none;
+
+        padding: 0px 10vw;
+
+        .logo {
+            height: 30px;
+            margin-right: 80px;
+            filter: hue-rotate(200deg) saturate(2);
+        }
+
+        .links {
+            width: 500px;
+            height: 100%;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .link {
+                display:table-cell;
+                height: 100%;
+                width:100%;
+                text-align: center;
+                vertical-align:middle;
+
+                &.active{
+                    background:$background;
+                    color:$secondary;
+                }
+
+                &:hover {
+                    background: $secondary;
+                }
+            }
+
+        }
+
+    }
+
     .main {
         padding: 150px 10vw;
-        // height: 500px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
 
         .texts {
-            // margin-bottom:150px;
             width: 100%;
 
             .title {
@@ -105,6 +157,7 @@ body {
             }
 
             .subtitle {
+                margin-top: 30px;
                 font-size: 24px;
                 line-height: 34px;
                 text-transform: uppercase;
@@ -132,6 +185,7 @@ body {
                 top: 5px;
                 left: -5px;
                 display: block;
+
                 // color:transparent;
                 &:before {
                     content: attr(shadow-content);
