@@ -4,10 +4,10 @@
         <div class="navigation">
             <img class="logo" src="@/assets/logo.png" alt="">
             <div class="links">
-                <router-link class="link active">Home</router-link>
-                <router-link class="link">About</router-link>
-                <router-link class="link">Modals</router-link>
-                <router-link class="link">Forms</router-link>
+                <div class="link active">Home</div>
+                <div class="link">About</div>
+                <div class="link">Modals</div>
+                <div class="link">Forms</div>
             </div>
         </div>
         <div class="main ">
@@ -118,18 +118,23 @@ body {
             align-items: center;
 
             .link {
-                display:table-cell;
+                display: table-cell;
                 height: 100%;
-                width:100%;
-                text-align: center;
-                vertical-align:middle;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 5px solid transparent;
 
-                &.active{
-                    background:$background;
-                    color:$secondary;
+                &.active {
+                    // background:$secondary;
+                    border-bottom: 5px solid $error;
+
+                    // color:$primary;
                 }
 
                 &:hover {
+                    cursor: pointer;
                     background: $secondary;
                 }
             }
