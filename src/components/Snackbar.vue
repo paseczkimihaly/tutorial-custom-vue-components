@@ -1,5 +1,5 @@
 <template>
-    <div class="snackbar" :class="snackbar.type">
+    <div class="snackbar" :class="[snackbar.type,{'loading' : snackbar.loading}]">
         <div class="content">
             <div class="timer" v-if="timer"></div>
             <div class="title">
@@ -11,7 +11,11 @@
         </div>
         <div class="buttons">
             <transition name="button">
-                <div class="button clear" v-if="!snackbar.loading" key="delete" @click="removeSnack(snackbar.id)">
+                <div
+                    class="button clear"
+                    v-if="!snackbar.loading"
+                    key="delete"
+                    @click="removeSnack(snackbar.id)">
                     <span class="material-icons">
                         clear
                     </span>
@@ -36,41 +40,41 @@ export default {
     props: {
         snackbar: Object
     },
-    data(){
+    data () {
         return {
-            timer:null
+            timer: null
         }
     },
-    created(){
-        if(!this.snackbar.loading){
+    created () {
+        if (!this.snackbar.loading) {
             this.attachTimer()
         }
     },
-    
-    watch:{
-        isLoading(value){
-            if(!value && !this.timer){
+
+    watch: {
+        isLoading (value) {
+            if (!value && !this.timer) {
                 this.attachTimer();
             }
         }
     },
-    computed:{
-        isLoading(){
+    computed: {
+        isLoading () {
             return this.snackbar.loading
         }
     },
     methods: {
-        removeSnack(id) {
+        removeSnack (id) {
             console.log(id);
             this.$store.commit('removeSnackbar', id)
         },
-        attachTimer(){
+        attachTimer () {
             this.timer = setTimeout(() => {
                 this.removeSnack(this.snackbar.id)
             }, 5000);
         }
     },
-    beforeUnmount(){
+    beforeUnmount () {
         clearTimeout(this.timer);
     }
 };
@@ -103,25 +107,26 @@ export default {
     margin-top: 20px;
     position: relative;
     transition: all 0.2s;
-    position:relative;
+    position: relative;
 
-    .timer{
-        width:100%;
+    .timer {
+        width: 100%;
         height: 100%;
-        background:rgba(black,0.05);
+        background: rgba(black, 0.05);
         mix-blend-mode: multiply;
-        position:absolute;
-        bottom:0px;
-        left:0px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
         z-index: 2;
-        animation:load 9.2s both;
+        animation: load 9.2s both;
 
-        @keyframes load{
-            from{
-                width:0%;
+        @keyframes load {
+            from {
+                width: 0%;
             }
-            to{
-                width:100%;
+
+            to {
+                width: 100%;
             }
         }
     }
@@ -137,6 +142,30 @@ export default {
         content: '';
         clip-path: polygon(0 0, 1% 0, 100% 100%, 1% 100%);
 
+    }
+
+    &.loading {
+        @keyframes moveBg {
+            from {
+                background-position: 0px 0px;
+            }
+
+            to {
+                background-position: 85px 0px;
+
+            }
+        }
+
+        .content {
+            transition: all 0.2s;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, .5) 10px, rgba(255, 255, 255, .5) 20px);
+            background-repeat: repeat;
+            background-size: 500%;
+            background-position: 0px 0px;
+
+            animation: moveBg 2s linear infinite;
+
+        }
     }
 
     &.success {
@@ -204,7 +233,7 @@ export default {
         height: 100%;
         user-select: none;
         clip-path: polygon(0 0, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 10px 100%, 0% calc(100% - 10px));
-        
+
         transition: all 0.2s;
         transform: translateX(-12px) scale(0.9);
         // position:relative;
@@ -212,13 +241,14 @@ export default {
         animation: buttonIn 0.2s 0.1s both;
 
         @keyframes buttonIn {
-            from{
+            from {
                 transform: translateX(-12px) scale(1.2);
-                opacity:0;
+                opacity: 0;
             }
-            to{
+
+            to {
                 transform: translateX(-12px) scale(0.9);
-                opacity:1;
+                opacity: 1;
 
             }
         }
@@ -233,7 +263,7 @@ export default {
             transition: all 0.2s;
 
             &.clear {
-                
+
                 &:hover {
                     background: $secondary;
                     cursor: pointer;
@@ -242,8 +272,8 @@ export default {
             }
 
             .load {
-                animation: shake-bottom 2s linear infinite alternate ;
-                display:flex;
+                animation: shake-bottom 2s linear infinite alternate;
+                display: flex;
                 justify-content: center;
                 align-items: center;
             }
@@ -251,6 +281,7 @@ export default {
         }
     }
 }
+
 .button-enter-active,
 .button-leave-active {
     transition: all 0.3s;
@@ -258,7 +289,7 @@ export default {
 
 .button-enter-from,
 .button-leave-to {
-    position:absolute;
+    position: absolute;
     opacity: 0;
     transform: scale(0.8);
 }

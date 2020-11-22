@@ -4,7 +4,7 @@
         <div class="main ">
             <div class="texts">
                 <p class="title">Custom Vue Components</p>
-                <p class="subtitle">Create your own Vue components with VueX and CSS Sass</p>
+                <p class="subtitle">[UNDER CONSTRUCTION] Create your own Vue components with VueX and CSS Sass</p>
             </div>
         </div>
         <div class="mainButtons buttonsBg">
@@ -13,9 +13,9 @@
                 <p class="linetext">BUTTONS</p>
             </div>
             <div class="buttons">
-                <custom-button class="bright" @click="addSnackbar(null)">Bright</custom-button>
-                <custom-button @click="addSnackbar(false)">Red</custom-button>
-                <custom-button class="green" @click="addSnackbar(true)">Green</custom-button>
+                <custom-button class="bright" @click="addSnackbar()">Message</custom-button>
+                <custom-button @click="addSnackbar(false)">Failed</custom-button>
+                <custom-button class="green" @click="addSnackbar(true)">Successful</custom-button>
                 <custom-button disabled @click="addSnackbar()">Disabled</custom-button>
                 <custom-button loading @click="addSnackbar()">Loading</custom-button>
             </div>
@@ -34,8 +34,8 @@ export default {
         async addSnackbar(type) {
             let isAsync = type != null;
             let id = await this.$store.dispatch("addSnackbar", {
-                title: "New snackbar...",
-                message: "Hello world, and hello moon, and hi",
+                title: type == undefined ? "Message" : "Async Snackbar",
+                message: type == undefined ? "Hello world, and hello moon, and hi" : "Waiting for response...",
                 loading: isAsync,
             });
 
@@ -46,11 +46,11 @@ export default {
                     console.log('update');
                     this.$store.commit('updateSnackbar', {
                         id,
-                        title: success ? 'Success!' : 'Error',
+                        message: success ? 'Success!' : 'Error',
                         type: success ? 'success' : 'fail',
                         loading: false
                     })
-                }, 2000);
+                }, 4000);
             }
         },
     },
